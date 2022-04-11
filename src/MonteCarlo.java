@@ -57,7 +57,7 @@ public class MonteCarlo{
         //This method returns true if the point (x, y) is within the circle c, and false otherwise
         double dist = Math.sqrt(Math.pow(x - c.centerX, 2) + Math.pow(y - c.centerY, 2));
         return dist <= c.radius;
-        // return dist <= (Math.sqrt(Math.pow((x-this.centerX), 2) + Math.pow((y-this.centerY), 2)))
+        // return dist <= (Math.sqrt(Math.pow(Math.abs(x-this.centerX), 2) + Math.pow(Math.abs(y-this.centerY), 2)))
 
     }
     //helper method
