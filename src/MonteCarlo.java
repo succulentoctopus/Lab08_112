@@ -1,17 +1,45 @@
-
 import java.util.Random;
 import java.util.ArrayList;
 
-class Circle{
+/*
+challenge implemented (commented out):
+Make it work for ellipses too
+ */
+
+/*
+class Circle extends Ellipse {
+    public Circle(double x, double y, double r){
+        super(x, y, r, r);
+    }
+}
+
+class Ellipse {
+    double centerX;
+    double centerY;
+    double xAxis;
+    double yAxis;
+    public Ellipse(double x, double y, double r1, double r2) {
+        this.centerX = x;
+        this.centerY = y;
+        this.xAxis = r1;
+        this.yAxis = r2;
+    }
+}
+
+ */
+
+class Circle  {
     double centerX;
     double centerY;
     double radius;
-    public Circle(double x, double y, double r){
+
+    public Circle(double x, double y, double r) {
         this.centerX = x;
         this.centerY = y;
         this.radius = r;
     }
 }
+
 public class MonteCarlo{
     static Random rand = new Random();
     public static void main(String[] args){
@@ -29,10 +57,24 @@ public class MonteCarlo{
         //This method returns true if the point (x, y) is within the circle c, and false otherwise
         double dist = Math.sqrt(Math.pow(x - c.centerX, 2) + Math.pow(y - c.centerY, 2));
         return dist <= c.radius;
+        // return dist <= (Math.sqrt(Math.pow((x, 2) + Math.pow(y, 2))
+
     }
     //helper method
     public static double[] getMinMax(ArrayList<Circle> c) {
         double[] minMax = new double[4];
+        /*
+        double minX = c.get(0).centerX-c.get(0).xAxis;
+        double maxX = c.get(0).centerX+c.get(0).xAxis;
+        double minY = c.get(0).centerY-c.get(0).yAxis;
+        double maxY = c.get(0).centerY+c.get(0).yAxis;
+        for (int i = 1; i < c.size(); i++) {
+            double currMinX = c.get(i).centerX-c.get(i).xAxis;
+            double currMaxX = c.get(i).centerX+c.get(i).xAxis;
+            double currMinY = c.get(i).centerY-c.get(i).yAxis;
+            double currMaxY = c.get(i).centerY+c.get(i).yAxis;
+
+         */
         double minX = c.get(0).centerX-c.get(0).radius;
         double maxX = c.get(0).centerX+c.get(0).radius;
         double minY = c.get(0).centerY-c.get(0).radius;
@@ -78,8 +120,9 @@ public class MonteCarlo{
             }
         }
 
-        double estimate = 1.0 * count / numSamples;
+        double estimate = (1.0 * count / numSamples)*((vals[1]-vals[0]) * (vals[3] - vals[2]));
 
         return estimate;
     }
+
 }
